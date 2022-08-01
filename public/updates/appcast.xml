@@ -4,6 +4,15 @@
         <title>PlayCover</title>
         <item>
             <title>1.0.7</title>
+            <pubDate>Mon, 01 Aug 2022 16:15:40 -0400</pubDate>
+            <sparkle:channel>nightly</sparkle:channel>
+            <sparkle:version>16</sparkle:version>
+            <sparkle:shortVersionString>1.0.7</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>12.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://playcover.io/updates/PlayCover_nightly_16.dmg" length="5290858" type="application/octet-stream" sparkle:edSignature="q6Uze9aAoKcijlR//4fxauUUFz0Zdm7niytKw5a29P3BAEwepWisxWVEsVdvYoJI8FgXH+LxXfyKtIRxMFNCAQ=="/>
+        </item>
+        <item>
+            <title>1.0.7</title>
             <pubDate>Mon, 18 Jul 2022 19:47:24 -0400</pubDate>
             <sparkle:channel>nightly</sparkle:channel>
             <sparkle:version>2</sparkle:version>
