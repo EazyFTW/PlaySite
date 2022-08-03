@@ -117,7 +117,7 @@ export default class FAQ extends Component {
                     <title>FAQ - PlayCover</title>
                 </Helmet>
                 <div className="text-center mt-8 mb-5">
-                    <input value={this.state.search} onChange={(e) => this.setState({search: e.target.value})} className="md:w-3/5 py-3 px-6 text-lg outline-none focus:ring-1 focus:ring-pc-g font-itcavantgardestdmd dark:text-white bg-black/10 dark:bg-black/30 rounded-full" placeholder="Search..."/>
+                    <input value={this.state.search} onChange={(e) => this.setState({search: e.target.value})} className="md:w-3/5 py-3 px-6 text-lg outline-none focus:ring-1 focus:ring-pc-g font-itcavantgardestdmd placeholder:text-gray-700 dark:text-white bg-black/10 dark:bg-black/30 rounded-full" placeholder="Search..."/>
                 </div>
                 <div className="pt-10 space-y-4 md:space-y-6 mx-auto md:w-4/5">
                     {faqs.filter(f => this.state.search === "" || (this.getText(f.answer).toLowerCase().includes(this.state.search.toLowerCase()) || f.question.toLowerCase().includes(this.state.search.toLowerCase()))).map(faq => (
