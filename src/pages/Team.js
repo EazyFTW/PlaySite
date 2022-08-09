@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component, Fragment } from 'react';
 
 import { fetchJson } from '../utils/utils';
 
@@ -6,18 +6,73 @@ import { Helmet } from 'react-helmet';
 
 import Avatar from '../components/ui/Avatar';
 
-const websiteMaintainers = [
+const teams = [
     {
-        name: "EazyFTW",
-        url: "https://github.com/EazyFTW",
-        avatar: "https://avatars.githubusercontent.com/u/13033307?v=4"
+        name: "Repo Maintainers", users: ["lixin9311", "JoseMoreville", "roeegh", "Depal1"]
     },
     {
-        name: "roeegh",
-        url: "https://github.com/roeegh",
-        avatar: "https://avatars.githubusercontent.com/u/62909766?v=4"
-    }
-]
+        name: "Website Maintainers", users: [
+            {
+                login: "EazyFTW",
+                html_url: "https://github.com/EazyFTW",
+                avatar_url: "https://avatars.githubusercontent.com/u/13033307?v=4"
+            },
+            "roeegh",
+        ]
+    },
+    {
+        name: "Docs Maintainers", users: ["roeegh", "IsaacMarovitz"]
+    },
+    {
+        name: "Major Contributors", users: [
+            {
+                login: "akemin-dyao",
+                html_url: "https://github.com/akemin-dayo",
+                avatar_url: "https://avatars.githubusercontent.com/u/1980487?v=4"
+            },
+            {
+                login: "GreenglassT",
+                html_url: "https://github.com/GreenglassT",
+                avatar_url: "https://avatars.githubusercontent.com/u/73795969?v=4?s=400"
+            },
+            "cryptoAlgorithm",
+            "IsaacMarovitz",
+            "ohaiibuzzle",
+            "KhoraLee",
+            "Candygoblen123"
+        ]
+    },
+    {
+        name: "Minor Contributors", users: [
+            "zanderp25",
+            "ZhichGaming",
+            "wenqingl",
+            "Dippyskoodlez",
+            "hayatofujii",
+            "TLC-10",
+            "williamli0707",
+            "r8bhavneet",
+            "Animenosekai",
+            "HongyuS",
+            "Wind-Explorer",
+            {
+                login: "voltaicspy",
+                html_url: "https://github.com/voltaicspy",
+                avatar_url: "https://avatars.githubusercontent.com/u/95888304?v=4"
+            }
+        ]
+    },
+    {
+        name: "Honorable Mentions", users: [
+            "iVoider",
+            {
+                login: "lingfeishengtian",
+                html_url: "https://github.com/lingfeishengtian",
+                avatar_url: "https://avatars.githubusercontent.com/u/28375964?v=4"
+            },
+        ]
+    },
+];
 
 export default class Team extends Component {
 
@@ -63,60 +118,29 @@ export default class Team extends Component {
                 </Helmet>
                 {this.state.maintainers !== undefined && this.state.maintainers !== null && (
                     <>
-                        <div className="mt-4 pb-8">
-                            <span className="text-2xl mx-4 xl:mx-0 font-itcavantgardestdmd bg-clip-text text-transparent bg-gradient-to-r from-pc-g to-pc-b">Maintainers</span>
-                        </div>
-                        <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 pb-2">
-                            {this.state.maintainers.filter(c => c.contributions > 19).map((c, i) => (
-                                <div key={i} className="font-lufga text-lg mx-auto text-center truncate">
-                                    <a href={c.html_url} target="_blank" rel="noreferrer">
-                                        <Avatar url={c.avatar_url} name={c.login} size="mx-auto w-10 h-10 lg:w-16 lg:h-16 mb-3"/>
-                                        {c.login}
-                                    </a>
+                        {teams.map((team, i) => (
+                            <Fragment key={i}>
+                                <div className="mt-4 pb-8">
+                                    <span className="text-2xl mx-4 xl:mx-0 font-itcavantgardestdmd bg-clip-text text-transparent bg-gradient-to-r from-pc-g to-pc-b">{team.name}</span>
                                 </div>
-                            ))}
-                        </div>
-                        <div className="mt-4 pb-8">
-                            <span className="text-2xl mx-4 xl:mx-0 font-itcavantgardestdmd bg-clip-text text-transparent bg-gradient-to-r from-pc-g to-pc-b">Major Contributors</span>
-                        </div>
-                        <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 pb-2">
-                            {this.state.maintainers.filter(c => c.contributions > 11 && c.contributions < 20).map((c, i) => (
-                                <div key={i} className="font-lufga text-lg mx-auto text-center truncate">
-                                    <a href={c.html_url} target="_blank" rel="noreferrer">
-                                        <Avatar url={c.avatar_url} name={c.login} size="mx-auto w-10 h-10 lg:w-16 lg:h-16 mb-3"/>
-                                        {c.login}
-                                    </a>
+                                <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 pb-2">
+                                    {team.users.map((c, i) => {
+                                        const user = typeof c === 'string' ? this.state.maintainers.find(f => f.login === c) : c;
+
+                                        return (
+                                            <div key={i} className="font-lufga text-lg mx-auto text-center truncate">
+                                                <a href={user.html_url} target="_blank" rel="noreferrer">
+                                                    <Avatar url={user.avatar_url} name={user.login} size="mx-auto w-10 h-10 lg:w-16 lg:h-16 mb-3"/>
+                                                    {user.login}
+                                                </a>
+                                            </div>
+                                        )
+                                    })}
                                 </div>
-                            ))}
-                        </div>
-                        <div className="mt-4 pb-8">
-                            <span className="text-2xl mx-4 xl:mx-0 font-itcavantgardestdmd bg-clip-text text-transparent bg-gradient-to-r from-pc-g to-pc-b">Minor Contributors</span>
-                        </div>
-                        <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 pb-2">
-                            {this.state.maintainers.filter(c => c.contributions < 11).map((c, i) => (
-                                <div key={i} className="font-lufga text-lg mx-auto text-center truncate">
-                                    <a href={c.html_url} target="_blank" rel="noreferrer">
-                                        <Avatar url={c.avatar_url} name={c.login} size="mx-auto w-10 h-10 lg:w-16 lg:h-16 mb-3"/>
-                                        {c.login}
-                                    </a>
-                                </div>
-                            ))}
-                        </div>
+                            </Fragment>
+                        ))}
                     </>
                 )}
-                <div className="mt-4 pb-8">
-                    <span className="text-2xl mx-4 xl:mx-0 font-itcavantgardestdmd bg-clip-text text-transparent bg-gradient-to-r from-pc-g to-pc-b">Website Maintainers</span>
-                </div>
-                <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 pb-10">
-                    {websiteMaintainers.map((c, i) => (
-                        <div key={i} className="font-lufga text-lg mx-auto text-center truncate">
-                            <a href={c.url} target="_blank" rel="noreferrer">
-                                <Avatar url={c.avatar} name={c.name} size="mx-auto w-10 h-10 lg:w-16 lg:h-16 mb-3"/>
-                                {c.name}
-                            </a>
-                        </div>
-                    ))}
-                </div>
             </div>
         );
     }
