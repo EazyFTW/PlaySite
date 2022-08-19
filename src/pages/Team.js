@@ -64,7 +64,6 @@ const teams = [
     },
     {
         name: "Honorable Mentions", users: [
-            "iVoider",
             {
                 login: "lingfeishengtian",
                 html_url: "https://github.com/lingfeishengtian",
